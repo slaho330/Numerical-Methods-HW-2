@@ -1,0 +1,9 @@
+README for analysis figure, HW2
+Stephanie Aho
+
+The figure is runtime in seconds vs the size of the problem.
+For instance, if size=100, then nx=ny=nz=100.  The boundary
+conditions were set to zero.  
+
+After nx=ny=nz=600, the program seems to hang, so no runtimes
+for problem sizes greater than 600 were recorded.
