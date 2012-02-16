@@ -1,0 +1,46 @@
+README for the program heat.f90, HW2
+Stephanie Aho 
+
+Compile:
+
+$ gfortran -o heat heat.f90
+
+Run:
+
+$ ./heat
+nsteps:            1
+ FTCS:           10
+   0.0000000    
+ Crank Nicholson:           10
+   4.0320001    
+ ADI:           10
+   0.0000000    
+ done!
+
+**Output is the number of steps and then the method, 
+followed by the divisions in the x direction (nx) and 
+finally the runtime for one nstep of the algorithm**
+
+The program implements direct solvers for the 3D heat
+equation.  FTCS and Crank Nicolson are implemented 
+with the potential to use either constant or periodic
+boundary conditions (selected in the driver).
+
+The bonus ADI method is also implemented but only for
+constant boundary conditions.
+
+The time independent source term can be set in the 
+initialize subroutine. Initially all elements are
+set to zero and then select elements are made non-zero.
+
+FTCS uses no subroutines.
+
+Crank Nicholson uses subroutine ge_sub for Gaussian
+Elimination. A is not represented sparsely but the 
+ge_sub algorithm checks to see if the current scale
+factor will be zero and if so does not perform the 
+unnecessary operations (cuts the time by about 1/3)
+
+ADI uses the tri_solve subroutine to solve the tri-
+diagonal matricies in each direction. A is represented
+sparsely (an element for each diagonal value).
